@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <sys/time.h>
 
+namespace deiio {
+
 UtcTime::UtcTime()
   : microSecondsSinceEpoch_(0) {}
 
@@ -25,3 +27,6 @@ UtcTime UtcTime::now() {
   int64_t seconds = tv.tv_sec;
   return UtcTime(seconds * kMicroSecondsPerSecond + tv.tv_usec);
 }
+
+}  // namespace deiio
+
