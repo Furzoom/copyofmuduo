@@ -3,6 +3,8 @@
 
 #include <deiio/base/Types.h>
 
+namespace deiio {
+
 /**
  * Time stamp in UTC.
  *
@@ -70,5 +72,7 @@ inline double timeDifference(UtcTime high, UtcTime low) {
   int64_t diff = high.microSecondsSinceEpoch() - low.microSecondsSinceEpoch();
   return static_cast<double>(diff) / UtcTime::kMicroSecondsPerSecond;
 }
+
+}  // namespace deiio
 
 #endif  // DEIIO_BASE_UTCTIME_H_

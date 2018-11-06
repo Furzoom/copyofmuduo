@@ -1,6 +1,8 @@
 #include <deiio/base/UtcTime.h>
 #include <stdio.h>
 
+using namespace deiio;
+
 void passByConstReference(const UtcTime& x) {
   printf("%s\n", x.toString().c_str());
 }
