@@ -1,7 +1,10 @@
+// Copyright 2018 furzoom.com. All Rights Reserved.
+// Author: mn@furzoom.com
+
 #include <deiio/base/UtcTime.h>
 #include <stdio.h>
 
-using namespace deiio;
+using deiio::UtcTime;
 
 void passByConstReference(const UtcTime& x) {
   printf("%s\n", x.toString().c_str());
