@@ -1,5 +1,6 @@
 set(base_SRCS
-  UtcTime.cc)
+  UtcTime.cc
+  )
 
 add_library(deiio_base ${base_SRCS})
 
