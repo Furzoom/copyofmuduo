@@ -8,5 +8,7 @@ set(CMAKE_CXX_FLAGS
   )
 
 include_directories(${PROJECT_SOURCE_DIR})
+
 add_subdirectory(deiio/base)
 add_subdirectory(deiio/net)
+

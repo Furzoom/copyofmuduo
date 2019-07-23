@@ -9,7 +9,7 @@
 namespace deiio {
 
 /**
- * Time stamp in UTC, in microseconds resolution.
+ * Time stamp in UTC, in microsecond resolution.
  *
  * This class is immutable.
  * It's recommended to pass it by value, since it's passed in register
