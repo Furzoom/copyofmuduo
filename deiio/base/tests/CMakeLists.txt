@@ -1,3 +1,3 @@
-add_executable(utctime_unittest UtcTime_unittest.cc)
-target_link_libraries(utctime_unittest deiio_base)
+add_executable(UtcTime_unittest UtcTime_unittest.cc)
+target_link_libraries(UtcTime_unittest deiio_base)
 
