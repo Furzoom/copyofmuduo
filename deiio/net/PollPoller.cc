@@ -3,23 +3,26 @@
 
 #include <deiio/net/PollPoller.h>
 
+#include <deiio/net/Channel.h>
+
 namespace deiio {
 namespace net {
 
 PollPoller::~PollPoller() {
 }
 
-void PollPoller::poll(int timeoutMs) {
-  // make a copy
-  PollFdList pollfds(pollfds_);
-  int numEvents = ::poll(&*pollfds.begin(), pollfds.size(), timeoutMs);
+void PollPoller::poll(int timeoutMs, ChannelLists* activeChannels) {
+  int numEvents = ::poll(&*pollfds_.begin(), pollfds_.size(), timeoutMs);
 
-  for (PollFdList::iterator pfd = pollfds.begin();
-       pfd != pollfds.end() && numEvents > 0;
+  for (PollFdList::iterator pfd = pollfds_.begin();
+       pfd != pollfds_.end() && numEvents > 0;
        ++pfd) {
     if (pfd->revents > 0) {
       --numEvents;
-      // do something
+      Channel* channel = channels_[pfd->fd];
+      assert(channel->fd() == pfd->fd);
+      channel->set_revents(pfd->revents);
+      activeChannels->push_back(channel);
     }
   }
 }

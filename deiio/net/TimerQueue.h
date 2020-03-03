@@ -9,10 +9,12 @@
 
 #include <deiio/base/NonCopyable.h>
 #include <deiio/base/UtcTime.h>
+#include <deiio/net/Channel.h>
 
 namespace deiio {
 namespace net {
 
+class EventLoop;
 class Timer;
 class TimerId;
 
@@ -20,10 +22,8 @@ class TimerQueue : public NonCopyable {
  public:
   typedef std::function<void()> TimerCallback;
 
-  TimerQueue();
+  TimerQueue(EventLoop* loop);
   ~TimerQueue();
-
-  void tick(UtcTime now);
 
   /**
    * Schedules the callback to be run at given time,
@@ -34,8 +34,13 @@ class TimerQueue : public NonCopyable {
   void cancel(TimerId timerId);
 
  private:
+  void timeout();
+
   typedef std::list<Timer*> Timers;
 
+  EventLoop* loop_;
+  int timerfd_;
+  Channel timerfdChannel_;
   Timers timers_;
 };
 

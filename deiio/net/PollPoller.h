@@ -4,11 +4,12 @@
 #ifndef DEIIO_NET_POLLPOLLER_H_
 #define DEIIO_NET_POLLPOLLER_H_
 
-#include <deiio/net/Poller.h>
-
 #include <poll.h>
 
+#include <map>
 #include <vector>
+
+#include <deiio/net/Poller.h>
 
 namespace deiio {
 namespace net {
@@ -20,11 +21,12 @@ class PollPoller : public Poller {
  public:
   virtual ~PollPoller();
 
-  virtual void poll(int timeoutMs);
+  virtual void poll(int timeoutMs, ChannelList* activeChannels);
 
  private:
   typedef std::vector<struct pollfd> PollFdList;
   PollFdList pollfds_;
+  std::map<int, Channel*> channels_;
 };
 
 }  // namespace net

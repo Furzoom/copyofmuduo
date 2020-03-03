@@ -83,7 +83,7 @@ inline double timeDifference(UtcTime high, UtcTime low) {
  * Add @c seconds to given timestamp.
  *
  * @param timestamp, seconds
- * @return UtcTime
+ * @return timestamp + seconds as UtcTime
  */
 inline UtcTime addTime(UtcTime timestamp, double seconds) {
   int64_t delta =
